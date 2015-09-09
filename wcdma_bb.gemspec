@@ -7,7 +7,8 @@ Gem::Specification.new do |s|
     s.description   = "WCDMA baseband algorithm implementation in Ruby, as a learning material."
     s.authors       = ["Michael Duo Ling"]
     s.email         = 'duo.ling.cn@gmail.com'
-    s.files         = ["lib/wcdma_bb.rb"]
     s.homepage      = 'http://rubygems.org/gems/wcdma_bb'
     s.license       = 'MIT'
+    s.files         = ["lib/wcdma_bb.rb",
+                       "lib/wcdma_bb/rel10/ts25_211.rb"]
 end
