@@ -1,6 +1,7 @@
 Gem::Specification.new do |s|
     s.name          = 'wcdma_bb'
-    s.version       = '0.0.0'
+    s.version       = '0.0.1'
+    s.executables   << 'wcdma_bb'
     s.date          = '2015-09-09'
     s.summary       = 'WCDMA baseband in Ruby'
     s.description   = "WCDMA baseband algorithm implementation in Ruby, as a learning material."

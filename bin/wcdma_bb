@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'wcdma_bb'
+puts WcdmaBb.hi
