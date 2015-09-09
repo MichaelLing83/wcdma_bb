@@ -15,11 +15,11 @@ class AcronymTest < Minitest::Test
     end
 
     def test_search_acronym
-        Acronym.add('DPCCH', 'Dedicated Physical Control Channel')
-        Acronym.add('DPDCH', 'Dedicated Physical Data Channel')
-        assert_equal Hash['DPCCH', ['Dedicated Physical Control Channel']], Acronym.search_acronym('DPCCH')
-        assert_equal Hash['DPCCH', ['Dedicated Physical Control Channel'], 'DPDCH', ['Dedicated Physical Data Channel']],
-                        Acronym.search_acronym("DP.*")
+        #Acronym.add('E-DPCCH', 'Enhanced Dedicated Physical Control Channel')
+        #Acronym.add('E-DPDCH', 'Enhanced Dedicated Physical Data Channel')
+        assert_equal Hash['E-DPCCH', ['E-DCH Dedicated Physical Control Channel']], Acronym.search_acronym('E-DPCCH')
+        assert_equal Hash['E-DPCCH', ['E-DCH Dedicated Physical Control Channel'], 'E-DPDCH', ['E-DCH Dedicated Physical Data Channel']],
+                        Acronym.search_acronym("E-DP.CH")
     end
 end
 

@@ -30,6 +30,11 @@ SUBFRAME_LENGTH_IN_CHIPS    = 7680
 
 # 5.2 Uplink physical channels
 # 5.2.1 Dedicated uplink physical channels
+Acronym.add('DPDCH',        'Dedicated Physical Data Channel')
+Acronym.add('DPCCH',        'Dedicated Physical Control Channel')
+Acronym.add('E-DPDCH',      'E-DCH Dedicated Physical Data Channel')
+Acronym.add('E-DPCCH',      'E-DCH Dedicated Physical Control Channel')
+Acronym.add('HS-DPCCH',     'Dedicated Control Channel associated with HS-DSCH transmission')
 
 # types of uplink dedicated physical channels
 UL_DEDICATED_PHY_CHANNEL_LIST   = ["DPDCH", "DPCCH", "E-DPDCH", "E-DPCCH", "HS-DPCCH"]
