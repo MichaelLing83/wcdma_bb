@@ -1,4 +1,30 @@
 #!/usr/bin/env ruby
 
+require 'optparse'
 require 'wcdma_bb'
-puts WcdmaBb.hi
+
+options = {}
+
+optparser = OptionParser.new do |opts|
+    opts.banner = "Usage: wcdma_bb [options]"
+    options[:search_acronym] = nil
+    opts.on('--search_acronym PATTERN', 'Get full name of acronyms that match PATTERN') do |pattern|
+        options[:search_acronym] = pattern
+    end
+    opts.on('-h', '--help', 'Display help information') do
+        puts opts
+        exit
+    end
+end
+
+optparser.parse!
+
+if options[:search_acronym]
+    result = Acronym.search_acronym(options[:search_acronym])
+    result.each { |key, values|
+        puts "%-10s\t%s" % [key, values[0]]
+        values[1..-1].each { |v|
+            puts "%-10s\t%s" % ["", v]
+        }
+    }
+end
