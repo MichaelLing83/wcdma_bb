@@ -24,18 +24,33 @@ class AcronymTest < Minitest::Test
 end
 
 class UplinkDPDCHTest < Minitest::Test
-    def test_k
-        assert_equal 0, UplinkDPDCH.new(slot_format: 0).k
-    end
-    def test_N__data
-        (0..6).each { |slot_format|
+    def test_init
+        UplinkDpdchSlotFormatEnum.values.each { |slot_format|
             uplinkDpdch = UplinkDPDCH.new(slot_format: slot_format)
+            # convert to corresponding Integer
+            slot_format = UplinkDpdchSlotFormatEnum[slot_format]
             assert_equal 10 * (2**slot_format), uplinkDpdch.N__data
             assert_equal 15 * (2**slot_format), uplinkDpdch.kbps
             assert_equal 15 * (2**slot_format), uplinkDpdch.ksps
             assert_equal 256 / (2**slot_format), uplinkDpdch.sf
             assert_equal 150 * (2**slot_format), uplinkDpdch.bit_per_frame
             assert_equal 10 * (2**slot_format), uplinkDpdch.bit_per_slot
+        }
+
+    end
+end
+
+class UplinkDPCCHTest < Minitest::Test
+    def test_init
+        UplinkDpcchSlotFormatEnum.values.each { |slot_format|
+            uplinkDpcch = UplinkDPCCH.new(slot_format: slot_format)
+            assert_equal 15, uplinkDpcch.kbps
+            assert_equal 15, uplinkDpcch.ksps
+            assert_equal 256, uplinkDpcch.sf
+            assert_equal 150, uplinkDpcch.bit_per_frame
+            assert_equal 10, uplinkDpcch.bit_per_slot
+            assert_equal 10, uplinkDpcch.N__pilot + uplinkDpcch.N__TPC +
+                                uplinkDpcch.N__TFCI + uplinkDpcch.N__FBI
         }
 
     end

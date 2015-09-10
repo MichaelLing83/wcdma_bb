@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
     s.name          = 'wcdma_bb'
-    s.version       = '0.0.2'
+    s.version       = '0.0.3'
     s.executables   << 'wcdma_bb'
     s.date          = '2015-09-09'
     s.summary       = 'WCDMA baseband in Ruby'
@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
     s.homepage      = 'http://rubygems.org/gems/wcdma_bb'
     s.license       = 'MIT'
     s.files         = ["lib/wcdma_bb.rb",
+                       "lib/enum.rb",
                        "lib/wcdma_bb/acronym.rb",
                        "lib/wcdma_bb/rel10/ts25_211.rb"]
 end
