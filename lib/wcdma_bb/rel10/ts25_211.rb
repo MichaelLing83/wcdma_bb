@@ -75,15 +75,21 @@ class UplinkDPDCH < PhysicalChannel
     @@DPDCH_MIN_SF_FACTOR = 256
     @@DPDCH_MAX_SF_FACTOR = 4
 
-    attr_reader :sf, :k, :N__data
+    attr_reader :sf, :k, :N__data, :slot_format, :kbps, :ksps, :bit_per_slot, :bit_per_frame
 
     # Create a new instance
-    # @param sf [Integer] spreading factor
+    # @param slot_format [Integer] slot format from table 1 25.211 v10.0
     # @return [UplinkDPDCH] a new instance of this class
-    def initialize(sf)
-        @sf = sf
+    def initialize(slot_format:)
+        raise "slot_format=%d is out of range [0..6]" % slot_format if not slot_format.between?(0, 6)
+        @slot_format = slot_format
+        @sf = 256 / (2**@slot_format)
         @k  = self.class.k(sf: @sf, max_sf: @@DPDCH_MAX_SF_FACTOR, min_sf: @@DPDCH_MIN_SF_FACTOR)
         @N__data = self.class.N__data(k: @k)
+        @bit_per_slot = @N__data
+        @bit_per_frame = @bit_per_slot * RADIO_FRAME_LENGTH_IN_CHIPS / SLOT_LENGTH_IN_CHIPS
+        @kbps = @bit_per_frame / 10
+        @ksps = @kbps
     end
 end
 
